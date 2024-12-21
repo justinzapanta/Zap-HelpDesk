@@ -85,7 +85,7 @@
             <li class="">
                 <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="fas fa-route text-gray-500"></i>
-                <span class="flex-1 ms-3  whitespace-nowrap">Ticket Routing</span>
+                <span class="flex-1 ms-3  whitespace-nowrap">Automated Ticket Routing</span>
                 </a>
             </li>
 
@@ -141,161 +141,11 @@
   </aside>
 
   <div class="p-4 sm:ml-64 mt-20">
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-        <!-- Ticket Card -->
-        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
-            <div>
-                <div class="text-sm font-medium text-gray-500">Tickets</div>
-                <div class="text-2xl font-semibold text-gray-800">1,234</div>
-            </div>
-            <div class="bg-blue-100 rounded-full p-2">
-                <i class="fas fa-ticket-alt text-blue-500 text-lg"></i>
-            </div>
-        </div>
+    {% block content %}
 
-        <!-- Reports Card -->
-        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
-            <div>
-                <div class="text-sm font-medium text-gray-500">Reports</div>
-                <div class="text-2xl font-semibold text-gray-800">89</div>
-            </div>
-            <div class="bg-purple-100 rounded-full p-2">
-                <i class="fas fa-chart-bar text-purple-500 text-lg"></i>
-            </div>
-        </div>
-
-        <!-- Customer Management Card -->
-        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
-            <div>
-                <div class="text-sm font-medium text-gray-500">Customers</div>
-                <div class="text-2xl font-semibold text-gray-800">3,287</div>
-            </div>
-            <div class="bg-yellow-100 rounded-full p-2">
-                <i class="fas fa-users text-yellow-500 text-lg"></i>
-            </div>
-        </div>
-
-        <!-- Tasks and Follow-Ups Card -->
-        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
-            <div>
-                <div class="text-sm font-medium text-gray-500">Tasks</div>
-                <div class="text-2xl font-semibold text-gray-800">42</div>
-            </div>
-            <div class="bg-red-100 rounded-full p-2">
-                <i class="fas fa-tasks text-red-500 text-lg"></i>
-            </div>
-        </div>
-
-        <!-- Team Communication Card -->
-        <div class="bg-white rounded-lg border p-4 flex items-center justify-between shadow-md">
-            <div>
-                <div class="text-sm font-medium text-gray-500">Messages</div>
-                <div class="text-2xl font-semibold text-gray-800">156</div>
-            </div>
-            <div class="bg-indigo-100 rounded-full p-2">
-                <i class="fas fa-comments text-indigo-500 text-lg"></i>
-            </div>
-        </div>
-        
-    </div>
-
-
-
-    <!--Search-->
-    <div class="w-full mt-14 flex justify-end mb-4 gap-x-3 font-roboto">
-      <input type="text" class="border rounded-md w-72 h-10 border-gray-300 pl-2" placeholder="Search" name="" id="">
-      <button class="px-6 py-2 bg-gray-900 text-white font-bold rounded-lg">Search</button>
-    </div>
-
-
-    <div class="flex flex-col lg:flex-row gap-4">
-      <div class="w-full lg:w-1/2 xl:w-2/5 bg-white rounded-lg shadow-lg p-6 border">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Task Status</h2>
-          <div class="relative">
-              <svg class="w-full h-60" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#3B82F6" stroke-width="10" style="stroke-dasharray: 141.37, 282.74; stroke-dashoffset: 0;"></circle>
-                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#10B981" stroke-width="10" style="stroke-dasharray: 84.82, 282.74; stroke-dashoffset: -141.37;"></circle>
-                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#F59E0B" stroke-width="10" style="stroke-dasharray: 42.41, 282.74; stroke-dashoffset: -226.19;"></circle>
-                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#EF4444" stroke-width="10" style="stroke-dasharray: 14.14, 282.74; stroke-dashoffset: -268.60;"></circle>
-              </svg>
-              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-                  <div class="text-4xl font-bold text-gray-800">100</div>
-                  <div class="text-sm text-gray-500">Total Tasks</div>
-              </div>
-          </div>
-          <div class="mt-6 grid grid-cols-2 gap-4">
-              <div class="flex items-center">
-                  <div class="w-4 h-4 rounded-full bg-blue-500 mr-2"></div>
-                  <div>
-                      <div class="text-sm font-medium text-gray-800">Open</div>
-                      <div class="text-xl font-semibold text-gray-900">50</div>
-                  </div>
-              </div>
-              <div class="flex items-center">
-                  <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
-                  <div>
-                      <div class="text-sm font-medium text-gray-800">In Progress</div>
-                      <div class="text-xl font-semibold text-gray-900">30</div>
-                  </div>
-              </div>
-              <div class="flex items-center">
-                  <div class="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
-                  <div>
-                      <div class="text-sm font-medium text-gray-800">On Hold</div>
-                      <div class="text-xl font-semibold text-gray-900">15</div>
-                  </div>
-              </div>
-              <div class="flex items-center">
-                  <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
-                  <div>
-                      <div class="text-sm font-medium text-gray-800">Closed</div>
-                      <div class="text-xl font-semibold text-gray-900">5</div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="w-full lg:w-1/2 xl:w-3/5 bg-white rounded-lg shadow-lg border overflow-hidden">
-          <div class="overflow-x-auto">
-              <table class="w-full text-sm">
-                  <thead class="bg-gray-50">
-                      <tr class="text-gray-500">
-                          <th class="px-4 py-2 text-left">Ticket ID</th>
-                          <th class="px-4 py-2 text-left">Subject</th>
-                          <th class="px-4 py-2 text-left">Reporter</th>
-                          <th class="px-4 py-2 text-left">Agent</th>
-                          <th class="px-4 py-2 text-left">Date</th>
-                      </tr>
-                  </thead>
-                  <tbody class="divide-y divide-gray-200">
-                      <tr class="hover:bg-gray-50">
-                          <td class="px-4 py-2">#1234</td>
-                          <td class="px-4 py-2">Login Issue</td>
-                          <td class="px-4 py-2">John Doe</td>
-                          <td class="px-4 py-2">Jane Smith</td>
-                          <td class="px-4 py-2">2023-05-15</td>
-                      </tr>
-                      <tr class="hover:bg-gray-50">
-                          <td class="px-4 py-2">#1235</td>
-                          <td class="px-4 py-2">Payment Failed</td>
-                          <td class="px-4 py-2">Alice Johnson</td>
-                          <td class="px-4 py-2">Bob Williams</td>
-                          <td class="px-4 py-2">2023-05-16</td>
-                      </tr>
-                      <tr class="hover:bg-gray-50">
-                          <td class="px-4 py-2">#1236</td>
-                          <td class="px-4 py-2">Account Locked</td>
-                          <td class="px-4 py-2">Emma Davis</td>
-                          <td class="px-4 py-2">Michael Brown</td>
-                          <td class="px-4 py-2">2023-05-17</td>
-                      </tr>
-                  </tbody>
-                </table>
-              </div>
-          </div>
-      </div>
-    </div>
-
+    {% endblock %}
+  </div>
+  
   <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 
 </body>

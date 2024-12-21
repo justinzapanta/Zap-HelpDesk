@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.dashboard, name='dashboard'),
+    path('ticket-routing/', views.ticket_routing),
 ]

@@ -1,0 +1,77 @@
+{% extends 'website/base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        <!-- Card -->
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Department</div>
+                <div class="text-2xl font-semibold text-gray-800">4</div>
+            </div>
+            <div class="bg-blue-100 rounded-full p-2 px-3">
+                <i class="fa-solid fa-building"></i> </div>
+        </div>
+
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Online Agents</div>
+                <div class="text-2xl font-semibold text-gray-800">4</div>
+            </div>
+            <div class="bg-emerald-100 rounded-full p-2 px-3">
+                <i class="fa-solid fa-headset"></i>            
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Total Active Routing </div>
+                <div class="text-2xl font-semibold text-gray-800">4</div>
+            </div>
+            <div class="bg-red-100 rounded-full p-2 px-3">
+                <i class="fa-solid fa-route"></i>
+            </div>
+        </div>
+    </div>
+
+    <!--Create-->
+    <div class="mt-10 mb-3 w-full flex justify-end font-roboto">
+        <button class="bg-gray-900 text-white px-8 py-2 rounded-xl text-lg">Create</button>
+    </div>
+
+    <!--table-->
+    <div class="w-full border h-[30rem] max-h-[30rem] overflow-y-auto rounded-lg shadow-lg">
+        <table class="w-full font-roboto text-sm">
+            <thead class="bg-gray-50 border-b border-gray-200">
+                <tr class="text-gray-500">
+                    <th class="px-4 py-2 text-left">Rule Name</th>
+                    <th class="px-4 py-2 text-left">Conditions</th>
+                    <th class="px-4 py-2 text-left">Actions</th>
+                    <th class="px-4 py-2 text-left">Status</th>
+                    <th class="px-4 py-2 text-left">Tickets Routed</th>
+                    <th class="px-4 py-2 text-left">Last Modified</th>
+                    <th class="px-4 py-2 text-left">Action</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                <tr class="hover:bg-gray-50 truncate">
+                    <td class="px-4 py-2 truncate max-w-40">Round-robin ticket routing system</td>
+                    <td class="px-4 py-2 truncate max-w-40">Login Issue</td>
+                    <td class="px-4 py-2 truncate max-w-40">Assign to Tech Team A</td>
+                    <td class="px-4 py-2 truncate max-w-40">
+                        <i class="fa-solid text-sm fa-circle text-emerald-500"></i>
+                        Active
+                    </td>
+                    <td class="px-4 py-2 truncate max-w-40">0</td>
+                    <td class="px-4 py-2 truncate max-w-40">2024-12-21</td>
+                    <td class="px-4 py-2 truncate max-w-40 font-bold">
+                        <a href="#">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
