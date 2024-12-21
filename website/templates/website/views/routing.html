@@ -35,18 +35,29 @@
     </div>
 
     <!--Create-->
-    <div class="mt-10 mb-3 w-full flex justify-end font-roboto">
-        <button class="bg-gray-900 text-white px-8 py-2 rounded-xl text-lg">Create</button>
+    <div class="mt-24 mb-3 w-full flex font-roboto">
+        <div class="flex gap-x-3 font-roboto flex-1">
+            <input type="text" class="border rounded-md w-72 h-10 border-gray-300 pl-2" placeholder="Search" name="" id="">
+            <button class="px-8 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+        </div>
+
+        <button onclick="open_modal('create_modal')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-2 rounded-xl font-bold text-lg">
+            <i class="fa-solid fa-plus mr-1"></i>
+            Create
+        </button>
     </div>
 
     <!--table-->
-    <div class="w-full border h-[30rem] max-h-[30rem] overflow-y-auto rounded-lg shadow-lg">
+    <div class="w-full border h-[30.5rem] max-h-[30.5rem] overflow-y-auto rounded-lg shadow-md">
         <table class="w-full font-roboto text-sm">
             <thead class="bg-gray-50 border-b border-gray-200">
                 <tr class="text-gray-500">
                     <th class="px-4 py-2 text-left">Rule Name</th>
-                    <th class="px-4 py-2 text-left">Conditions</th>
-                    <th class="px-4 py-2 text-left">Actions</th>
+                    <th class="px-4 py-2 text-left">Categories</th>
+                    <th class="px-4 py-2 text-left">Assigned to</th>
                     <th class="px-4 py-2 text-left">Status</th>
                     <th class="px-4 py-2 text-left">Tickets Routed</th>
                     <th class="px-4 py-2 text-left">Last Modified</th>
@@ -55,17 +66,17 @@
             </thead>
             <tbody class="divide-y divide-gray-200">
                 <tr class="hover:bg-gray-50 truncate">
-                    <td class="px-4 py-2 truncate max-w-40">Round-robin ticket routing system</td>
-                    <td class="px-4 py-2 truncate max-w-40">Login Issue</td>
-                    <td class="px-4 py-2 truncate max-w-40">Assign to Tech Team A</td>
-                    <td class="px-4 py-2 truncate max-w-40">
+                    <td class="px-4 py-3 truncate max-w-40">Round-robin ticket routing system</td>
+                    <td class="px-4 py-3 truncate max-w-40">All Categories and All Priorities</td>
+                    <td class="px-4 py-3 truncate max-w-[10.5rem]">All Online Agents</td>
+                    <td class="px-4 py-3 truncate max-w-40">
                         <i class="fa-solid text-sm fa-circle text-emerald-500"></i>
                         Active
                     </td>
-                    <td class="px-4 py-2 truncate max-w-40">0</td>
-                    <td class="px-4 py-2 truncate max-w-40">2024-12-21</td>
-                    <td class="px-4 py-2 truncate max-w-40 font-bold">
-                        <a href="#">
+                    <td class="px-4 py-3 truncate max-w-40">0</td>
+                    <td class="px-4 py-3 truncate max-w-40">2024-12-21</td>
+                    <td class="px-4 py-3 truncate max-w-40 font-bold">
+                        <a href="#" onclick="open_modal('create_modal', true)">
                             <i class="fa-regular fa-pen-to-square"></i>
                             Edit
                         </a>
@@ -74,4 +85,88 @@
             </tbody>
         </table>
     </div>
+
+    
+    <!--pagination-->
+    <nav class="w-full flex justify-center ">
+        <ul class="inline-flex -space-x-px text-base mt-7 rounded-lg h-10 shadow-md">
+          <li>
+            <a href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+          </li>
+          <li>
+            <a href="#" aria-current="page" class="flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">1</a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+          </li>
+        </ul>
+      </nav>
+
+    
+    <!--Create Modal-->
+    <div id="create_modal" class="absolute w-full h-full top-0 left-0 flex flex-col hidden justify-center z-30">
+        <div class="w-full flex justify-center">
+            <div class="w-[32rem] rounded-xl border shadow-xl bg-white">
+                <div class="p-4 bg-green-600 rounded-t-xl">
+                    <h1 id="create_modal_title" class="font-roboto text-2xl text-white">Create Automated Ticket Routing</h1>
+                </div>
+
+                <div class="p-4 space-y-4">
+                    <div>
+                        <label for="rule_name">Rule Name</label>
+                        <input id="rule_name" name="rule_name" type="text" placeholder="Ex: Skill-based routing" class="w-full pl-2 mt-1 h-10 border rounded-lg border-gray-300">
+                    </div>
+
+                    <div>
+                        <select onchange="selected(this, 'categories')" class="border px-4 py-1  rounded-md border-gray-300" name="conditions" id="conditions">
+                            <option value="">Categories</option>
+                            <option value="all categories">All Categories</option>
+                        </select>
+                        <div id="categories" class="w-full pl-2 mt-1 h-10 border-b gap-x-4 gap-y-1 rounded-lg flex flex-wrap">
+
+                        </div>
+                    </div>
+
+                    <div>
+                        <select class="border px-2 py-1 rounded-md border-gray-300" name="conditions" id="conditions">
+                            <option value="or">Or</option>
+                            <option value="and">And</option>
+                        </select>
+                        <select onchange="selected(this, 'priorities')" class="border px-4 py-1 rounded-md border-gray-300" name="conditions" id="conditions">
+                            <option value="">Priorities</option>
+                            <option value="all priorities">All Priorities</option>
+
+                        </select>
+                        <div id="priorities" class="w-full pl-2 mt-1 h-10 border-b gap-x-4 gap-y-1 rounded-lg flex flex-wrap">
+   
+                        </div>
+                    </div>
+
+                    <div>
+                        <select class="border px-4 py-1 rounded-md border-gray-300" name="assigned_to" id="conditions">
+                            <option>Assigned To</option>
+                        </select>
+                        <div id="assigned" class="w-full pl-2 mt-1 h-10 border-b gap-x-4 gap-y-1 rounded-lg flex flex-wrap">
+
+                        </div>
+                    </div>
+
+                    <div class="w-full flex justify-end space-x-4 font-roboto ">
+                        <button onclick="close_modal('create_modal')" class="px-10 py-2 border  rounded-lg bg-gray-100 hover:bg-gray-200 mt-4">Cancel</button>
+                        <button id="create_button" class="px-10 py-2 bg-emerald-500 rounded-lg text-white hover:bg-emerald-600 mt-4">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--To load color-->
+    <div class="text-red-400 ">
+        
+    </div>
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'js/routing.js' %}"></script>
 {% endblock %}
