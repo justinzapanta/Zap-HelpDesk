@@ -1,0 +1,302 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+
+<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 shadow-sm font-roboto">
+    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center justify-start rtl:justify-end">
+          <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+              <span class="sr-only">Open sidebar</span>
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                 <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+              </svg>
+           </button>
+          <a href="#" class="flex ms-2 md:me-24">
+            <div class="h-full my-auto mr-2">
+                <img src="{% static 'img/desk_logo.png' %}" class="w-12 h-7" alt="">
+            </div>
+            <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">ZapDesk</span>
+          </a>
+        </div>
+        <div class="flex items-center">
+            <div class="flex items-center ms-3">
+              <div>
+                <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                  <span class="sr-only">Open user menu</span>
+                  <img class="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                </button>
+              </div>
+              <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
+                <div class="px-4 py-3" role="none">
+                  <p class="text-sm text-gray-900 dark:text-white" role="none">
+                    Neil Sims
+                  </p>
+                  <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                    neil.sims@flowbite.com
+                  </p>
+                </div>
+                <ul class="py-1" role="none">
+                  <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </nav>
+  
+  <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full shadow-xl bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800 font-roboto">
+        <ul class="space-y-2 font-medium">
+           <li>
+              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-100 dark:hover:bg-gray-700 group">
+                 <svg class="w-5 h-5transition duration-75 text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                    <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                    <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+                 </svg>
+                 <span class="ms-3">Dashboard</span>
+              </a>
+           </li>
+
+            <li class="">
+                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-route text-gray-500"></i>
+                <span class="flex-1 ms-3  whitespace-nowrap">Ticket Routing</span>
+                </a>
+            </li>
+
+
+           <li>
+              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                 <i class="fas fa-ticket-alt text-gray-500"></i>
+                 <span class="flex-1 ms-3  whitespace-nowrap">Ticket</span>
+              </a>
+           </li>
+           <li>
+              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-info-circle text-lg text-gray-500"></i>
+                 <span class="flex-1 ms-3 whitespace-nowrap">Knowledge Base</span>
+              </a>
+           </li>
+           <li>
+              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-chart-line text-gray-500 "></i>
+                 <span class="flex-1 ms-3 whitespace-nowrap">Reports</span>
+              </a>
+           </li>
+           <li>
+              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-user-cog text-gray-500 "></i>
+
+                 <span class="flex-1 ms-3 whitespace-nowrap">Customer Management</span>
+              </a>
+           </li>
+           <li>
+              <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-tasks text-gray-500 "></i>
+
+                 <span class="flex-1 ms-3 whitespace-nowrap">Tasks and Follow-Ups</span>
+              </a>
+           </li>
+
+           <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-comments text-gray-500 "></i>
+               <span class="flex-1 ms-3 whitespace-nowrap">Team Communication</span>
+            </a>
+         </li>
+         <li>
+            <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="fas fa-bell text-gray-500 "></i> 
+                <span class="flex-1 ms-3 whitespace-nowrap">Notification</span>
+                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+            </a>
+       </li>
+        </ul>
+     </div>
+  </aside>
+
+  <div class="p-4 sm:ml-64 mt-20">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        <!-- Ticket Card -->
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Tickets</div>
+                <div class="text-2xl font-semibold text-gray-800">1,234</div>
+            </div>
+            <div class="bg-blue-100 rounded-full p-2">
+                <i class="fas fa-ticket-alt text-blue-500 text-lg"></i>
+            </div>
+        </div>
+
+        <!-- Reports Card -->
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Reports</div>
+                <div class="text-2xl font-semibold text-gray-800">89</div>
+            </div>
+            <div class="bg-purple-100 rounded-full p-2">
+                <i class="fas fa-chart-bar text-purple-500 text-lg"></i>
+            </div>
+        </div>
+
+        <!-- Customer Management Card -->
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Customers</div>
+                <div class="text-2xl font-semibold text-gray-800">3,287</div>
+            </div>
+            <div class="bg-yellow-100 rounded-full p-2">
+                <i class="fas fa-users text-yellow-500 text-lg"></i>
+            </div>
+        </div>
+
+        <!-- Tasks and Follow-Ups Card -->
+        <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Tasks</div>
+                <div class="text-2xl font-semibold text-gray-800">42</div>
+            </div>
+            <div class="bg-red-100 rounded-full p-2">
+                <i class="fas fa-tasks text-red-500 text-lg"></i>
+            </div>
+        </div>
+
+        <!-- Team Communication Card -->
+        <div class="bg-white rounded-lg border p-4 flex items-center justify-between shadow-md">
+            <div>
+                <div class="text-sm font-medium text-gray-500">Messages</div>
+                <div class="text-2xl font-semibold text-gray-800">156</div>
+            </div>
+            <div class="bg-indigo-100 rounded-full p-2">
+                <i class="fas fa-comments text-indigo-500 text-lg"></i>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+    <!--Search-->
+    <div class="w-full mt-14 flex justify-end mb-4 gap-x-3 font-roboto">
+      <input type="text" class="border rounded-md w-72 h-10 border-gray-300 pl-2" placeholder="Search" name="" id="">
+      <button class="px-6 py-2 bg-gray-900 text-white font-bold rounded-lg">Search</button>
+    </div>
+
+
+    <div class="flex flex-col lg:flex-row gap-4">
+      <div class="w-full lg:w-1/2 xl:w-2/5 bg-white rounded-lg shadow-lg p-6 border">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Task Status</h2>
+          <div class="relative">
+              <svg class="w-full h-60" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#3B82F6" stroke-width="10" style="stroke-dasharray: 141.37, 282.74; stroke-dashoffset: 0;"></circle>
+                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#10B981" stroke-width="10" style="stroke-dasharray: 84.82, 282.74; stroke-dashoffset: -141.37;"></circle>
+                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#F59E0B" stroke-width="10" style="stroke-dasharray: 42.41, 282.74; stroke-dashoffset: -226.19;"></circle>
+                  <circle cx="50" cy="50" r="45" fill="transparent" stroke="#EF4444" stroke-width="10" style="stroke-dasharray: 14.14, 282.74; stroke-dashoffset: -268.60;"></circle>
+              </svg>
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                  <div class="text-4xl font-bold text-gray-800">100</div>
+                  <div class="text-sm text-gray-500">Total Tasks</div>
+              </div>
+          </div>
+          <div class="mt-6 grid grid-cols-2 gap-4">
+              <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full bg-blue-500 mr-2"></div>
+                  <div>
+                      <div class="text-sm font-medium text-gray-800">Open</div>
+                      <div class="text-xl font-semibold text-gray-900">50</div>
+                  </div>
+              </div>
+              <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
+                  <div>
+                      <div class="text-sm font-medium text-gray-800">In Progress</div>
+                      <div class="text-xl font-semibold text-gray-900">30</div>
+                  </div>
+              </div>
+              <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
+                  <div>
+                      <div class="text-sm font-medium text-gray-800">On Hold</div>
+                      <div class="text-xl font-semibold text-gray-900">15</div>
+                  </div>
+              </div>
+              <div class="flex items-center">
+                  <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
+                  <div>
+                      <div class="text-sm font-medium text-gray-800">Closed</div>
+                      <div class="text-xl font-semibold text-gray-900">5</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 xl:w-3/5 bg-white rounded-lg shadow-lg border overflow-hidden">
+          <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                  <thead class="bg-gray-50">
+                      <tr class="text-gray-500">
+                          <th class="px-4 py-2 text-left">Ticket ID</th>
+                          <th class="px-4 py-2 text-left">Subject</th>
+                          <th class="px-4 py-2 text-left">Reporter</th>
+                          <th class="px-4 py-2 text-left">Agent</th>
+                          <th class="px-4 py-2 text-left">Date</th>
+                      </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                      <tr class="hover:bg-gray-50">
+                          <td class="px-4 py-2">#1234</td>
+                          <td class="px-4 py-2">Login Issue</td>
+                          <td class="px-4 py-2">John Doe</td>
+                          <td class="px-4 py-2">Jane Smith</td>
+                          <td class="px-4 py-2">2023-05-15</td>
+                      </tr>
+                      <tr class="hover:bg-gray-50">
+                          <td class="px-4 py-2">#1235</td>
+                          <td class="px-4 py-2">Payment Failed</td>
+                          <td class="px-4 py-2">Alice Johnson</td>
+                          <td class="px-4 py-2">Bob Williams</td>
+                          <td class="px-4 py-2">2023-05-16</td>
+                      </tr>
+                      <tr class="hover:bg-gray-50">
+                          <td class="px-4 py-2">#1236</td>
+                          <td class="px-4 py-2">Account Locked</td>
+                          <td class="px-4 py-2">Emma Davis</td>
+                          <td class="px-4 py-2">Michael Brown</td>
+                          <td class="px-4 py-2">2023-05-17</td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
+</body>
+</html>
