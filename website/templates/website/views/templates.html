@@ -2,17 +2,39 @@
 {% load static %}
 
 {% block content %}
-    <div class="w-full h-full px-10">
-        <div class="flex flex-col">
-            <div class="w-fit">
-                <a href="#">
-                    <div class="w-[40rem] h-96 border rounded-xl">
-                        <img src="{% static 'img/regular.png' %}" class="object-contain w-full h-full" alt="">
-                    </div>
+<div class="container mx-auto px-4 py-8">
+    <h1 class="font-bold text-2xl sm:text-3xl md:text-4xl mt-4 sm:mt-6 md:mt-10 text-center mb-8">Ticket Form Customization</h1>
 
-                    <h1 class="font-roboto">Regular</h1>
-                </a>
-            </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-14 mt-36">
+        <!-- API -->
+        <div class="flex justify-end">
+            <a href="#" class="w-full max-w-sm">
+                <div class="bg-white border rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+                    <div class="relative w-full h-48 sm:h-56 md:h-64">
+                        <img src="/static/img/api.png" alt="API" class="absolute inset-0 w-full h-full object-cover rounded-t-xl">
+                    </div>
+                    <div class="w-full p-4">
+                        <h2 class="text-lg sm:text-xl font-bold">API</h2>
+                        <p class="text-sm text-gray-600 mt-2">Seamlessly integrate the helpdesk into your existing systems with our API. Connect your own custom forms, automate ticket creation, and streamline workflows directly from your application or website. Empower your team with flexible, developer-friendly solutions</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Customize Form -->
+        <div class="flex justify-start">
+            <a href="#" class="w-full max-w-sm">
+                <div class="bg-white border rounded-xl shadow-md hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+                    <div class="relative w-full h-48 sm:h-56 md:h-64">
+                        <img src="/static/img/regular.png" alt="Customize Form" class="absolute inset-0 w-full h-full object-cover rounded-t-xl">
+                    </div>
+                    <div class="w-full p-4 border-t">
+                        <h2 class="text-lg sm:text-xl font-bold">No-Code Form</h2>
+                        <p class="text-sm text-gray-600 mt-2">Design your custom ticket form without any coding required. Easily customize fields, labels, and layout to suit your business needs. Generate a sharable link to instantly allow customers to submit tickets directly to your support system</p>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
+</div>
 {% endblock %}

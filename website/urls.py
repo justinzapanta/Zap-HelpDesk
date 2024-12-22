@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
-    path('ticket-routing/', views.ticket_routing),
-    path('form-customization/', views.ticket_form_customize, name='ticket_form_customize'),
-    path('template/', views.template),
+    path('ticket-routing/', views.ticket_routing, name='ticket-routing'),
+    path('ticket-form/', views.ticket_form, name='ticket-form'),
+    path('template/', views.template, name='template'),
     path('template/<str:name>', views.template)
 ]

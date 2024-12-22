@@ -10,7 +10,7 @@ def ticket_routing(request):
     return render(request, 'website/views/routing.html')
 
 
-def ticket_form_customize(request):
+def ticket_form(request):
     return render(request, 'website/views/ticket_form.html')
 
 
@@ -18,4 +18,4 @@ def template(request, name=None):
     try:
         return render(request, f'website/form_templates/{name}.html')
     except:
-        return redirect('ticket_form_customize')
+        return redirect('ticket-form')
