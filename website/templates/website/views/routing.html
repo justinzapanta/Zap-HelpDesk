@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block content %}
+    <h1 class="font-roboto text-3xl font-bold mb-6">Automated Ticket Routing</h1>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         <!-- Card -->
         <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
@@ -25,7 +26,7 @@
 
         <div class="bg-white rounded-lg border  p-4 flex items-center justify-between shadow-md">
             <div>
-                <div class="text-sm font-medium text-gray-500">Total Active Routing </div>
+                <div class="text-sm font-medium text-gray-500">Active Routing </div>
                 <div class="text-2xl font-semibold text-gray-800">4</div>
             </div>
             <div class="bg-red-100 rounded-full p-2 px-3">
@@ -34,17 +35,26 @@
         </div>
     </div>
 
+
+
     <!--Create-->
-    <div class="mt-24 mb-3 w-full flex font-roboto">
+
+    <div class="mt-16 md:mt-0 w-full flex justify-end md:hidden">
+        <button onclick="open_modal('create_modal')" class="bg-emerald-500 hover:bg-emerald-600 text-white md:hidden block md:px-8 px-4 py-2 rounded-xl font-bold text-lg">
+            <i class="fa-solid fa-plus mr-1"></i>
+            Create
+        </button>
+    </div>
+    <div class="md:mt-16 mb-3 w-full flex font-roboto mt-5">
         <div class="flex gap-x-3 font-roboto flex-1">
-            <input type="text" class="border rounded-md w-72 h-10 border-gray-300 pl-2" placeholder="Search" name="" id="">
-            <button class="px-8 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg">
+            <input type="text" class="border rounded-md w-36 md:w-72 h-10 border-gray-300 pl-2" placeholder="Search" name="" id="">
+            <button class="md:px-8 bg-sky-600 hover:bg-sky-700 text-white px-4 font-bold rounded-lg">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 Search
             </button>
         </div>
 
-        <button onclick="open_modal('create_modal')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-2 rounded-xl font-bold text-lg">
+        <button onclick="open_modal('create_modal')" class="bg-emerald-500 hover:bg-emerald-600 text-white hidden md:block md:px-8 py-2 rounded-xl font-bold text-lg">
             <i class="fa-solid fa-plus mr-1"></i>
             Create
         </button>
