@@ -1,38 +1,23 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LakeNet Support Center</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        lake: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        },
-                    },
-                },
-            },
-        }
-    </script>
+
 </head>
 <body class="bg-lake-50 min-h-screen flex flex-col">
     <header class="bg-white shadow-sm sticky top-0 z-10">
@@ -75,31 +60,16 @@
                 <h2 class="text-3xl font-extrabold text-center text-lake-900 sm:text-4xl mb-8">Submit Support Ticket</h2>
                 <div class="flex justify-center w-full">
                     <div class="mt-8 lg:mt-0 w-[40rem]">
-                        <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
-                            <div>
-                                <label for="full-name" class="block text-sm font-medium text-lake-700">Full name</label>
-                                <input type="text" name="full-name" id="full-name" autocomplete="name" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
-                            </div>
-                            <div class="w-full grid grid-cols-2 gap-2">
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-lake-700">Email</label>
-                                    <input type="email" name="email" id="email" autocomplete="email" class=" text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-lake-700">Phone number</label>
-                                    <input type="tel" name="phone" id="phone" autocomplete="tel" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                        <form id="ticket-form" action="#" method="POST" class="grid grid-cols-1 gap-y-6">
+                            {% csrf_token %}
+                            <!--Fields-->
+                            <div id="form_field_container" class="flex flex-col gap-y-3">
+                                <div id="Full Name_input">
+                                    <label for="full-name" class="block text-sm font-medium text-lake-700">Full Name</label>
+                                    <input type="text" name="full-name" id="full-name" autocomplete="name" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
                                 </div>
                             </div>
-                            <div>
-                                <label for="issue" class="block text-sm font-medium text-lake-700">Type of Issue</label>
-                                <select type="issue" name="issue" id="issue" autocomplete="tel" class="mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 text-lake-700 sm:text-sm">
-                                    <option value="">Option</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-lake-700">Message</label>
-                                <textarea id="message" name="message" rows="4" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm"></textarea>
-                            </div>
+                            <!--Submit-->
                             <div>
                                 <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-lake-600 hover:bg-lake-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lake-500">
                                     Submit
@@ -141,5 +111,121 @@
             </div>
         </div>
     </footer>
+
+
+    <!--Customize-->
+    <div class="absolute top-0 w-full hover:cursor-pointer">
+        <a onclick="show_modal('customize_modal', 'true')" href="#ticket-form" class="px-4 fixed right-0 top-16 rounded-l-xl flex flex-col justify-center h-14 bg-white border shadow-2xl z-50">
+            <div class="flex space-x-2">
+                <i class="fas fa-wrench text-lake-700 text-xl"></i>
+                <h1 class="font-semibold text-lake-700">Customize</h1>
+            </div>
+        </a>
+    </div>
+
+
+
+    <!--Edit Side Bar-->
+    <div id="customize_modal" class="fixed border-l hidden rounded-l-2xl overflow-y-auto border-l-gray-300 shadow-xl bg-white z-50 font-roboto right-0 top-0 w-[24rem] h-full">
+        <div class="relative w-full">
+            <a onclick="show_modal('customize_modal', 'false')" class="absolute hover:cursor-pointer top-4 right-4 font-bold text-gray-500">X</a>
+        </div>
+        <h1 class="text-center font-semibold text-2xl mt-3 text-lake-600">Customize</h1>
+
+        <div class="w-full grid grid-cols-2 mt-3 px-2">
+            <button class="w-full flex text-lg justify-center border py-1 bg-lake-600 rounded-md text-white">
+                <a class="">Form</a>
+            </button>
+            <button class="w-full flex text-lg justify-center hover:bg-lake-100 rounded-md  py-1">
+                <a class="">Website</a>
+            </button>
+        </div>
+
+        <div class="w-full mt-4">
+            <div class="px-4 gap-y-3 flex flex-col">
+                <div>
+                    <h1 class="font-semibold text-lake-700">Field</h1>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-lake-700">Label</label>
+                    <input  id="label" class=" text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-lake-700">Type</label>
+                    <select onchange="selected_type(this)" name="select_type" id="select_type" autocomplete="tel" class="mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 text-lake-700 sm:text-sm">
+                        <option value="input">Input</option>
+                        <option value="input_number">Input Number</option>
+                        <option value="textarea">Textarea</option> 
+                        <option value="select">Selection</option>
+                        <option value="image_upload">Image Upload</option>
+                        <option value="file_upload">File Upload</option>
+                        <option value="checkbox">Checkbox</option>
+                        <option value="date">Date</option>
+                    </select>           
+                </div>
+                <div id="selection_option" class="pb-3 mt-1 hidden">
+                    <div id="">
+                        <div class="flex w-full">
+                            <label class="block flex-1 text-sm font-medium text-lake-700">Options</label>
+                            <a onclick="add_new_option()" class="text-sm hover:cursor-pointer underline underline-offset-2">Add New Option</a>
+                        </div>
+
+                        <div id="option_container" class="gap-y-1 flex flex-col  max-h-64 overflow-y-auto">
+                            <div id="option-1" class="flex">
+                                <input placeholder="option 1"  class=" options text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                                <div class="my-auto ml-2">
+                                    <i onclick="delete_option(this)" container_id="option-1" class="fas fa-trash z-40 mr-1 text-red-400 hover:text-red-500 ml-1 hover:cursor-pointer "></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="placeholder_container">
+                    <label class="block text-sm font-medium text-lake-700">Placeholder</label>
+                    <input placeholder="(optional)" name="placeholder"  id="placeholder" class=" text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                </div>
+                
+
+                <div>
+                    <label class="block text-sm font-medium text-lake-700">Required</label>
+                    <select type="type" name="is_required" id="is_required" autocomplete="tel" class="mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 text-lake-700 sm:text-sm">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>           
+                </div>
+
+                <div class="w-full mt-4 flex justify-center">
+                    <button onclick="create_field()" class="px-10 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Create Field</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="used_fields_container" class="px-4 mb-2">
+            <div class="flex mt-8">
+                <h1 class="text-lake-700 flex-1 font-semibold">Used Fields</h1>
+                <h1 class="text-sm mt-1 font-roboto text-lake-700">Click the field to edit</h1>
+            </div>
+
+            <div id="Full Name" class="flex h-fit">
+                <div class="py-2 flex-1 border border-lake-300 mt-3 px-2 truncate rounded-md flex gap-x-3">
+                    <div class="flex-1 hover:cursor-pointer gap-x-3 flex">
+                        <h1 class="font-roboto text-sm text-lake-700 flex-1 ">Full Name</h1>
+                    </div>
+                </div>
+                <div class="my-auto h-full mx-2.5">
+                    <i onclick="delete_field('Full Name')" class="fas fa-trash z-40 mt-2.5 text-red-400 hover:text-red-500 hover:cursor-pointer"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="no_field" class="w-full px-6">
+            <h1 class="text-lake-700 text-sm">No Field Used</h1>
+        </div>
+    </div>
+    
+    
+    <script src="{% static 'js/regular.js' %}"></script>
 </body>
 </html>

@@ -11,11 +11,10 @@ def ticket_routing(request):
 
 
 def ticket_form(request):
+    if request.method == 'POST':
+        return redirect('template')
     return render(request, 'website/views/ticket_form.html')
 
 
-def template(request, name=None):
-    try:
-        return render(request, f'website/form_templates/{name}.html')
-    except:
-        return redirect('ticket-form')
+def template(request):
+    return render(request, f'website/form_templates/regular.html')
