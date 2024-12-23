@@ -1,8 +1,12 @@
+const submit_ticket_button = document.getElementById('submit_ticket_button')
+
 function show_modal(id, display){
     if (display === 'true'){
         document.getElementById(id).classList.remove('hidden')
+        submit_ticket_button.setAttribute('type', 'button')
     }else{
         document.getElementById(id).classList.add('hidden')
+        submit_ticket_button.setAttribute('type', 'submit')
     }
 }
 
@@ -108,6 +112,7 @@ function create_field(){
 
 
 function delete_field(id){
+    delete data[id]
     document.getElementById(id).remove()
     delete_element(id)
 }
@@ -121,13 +126,13 @@ function create_element(type, label, required, placeholder=''){
 
     if (type === 'input'){
         new_div.innerHTML = `
-            <label for="${label}" class="block text-sm font-medium text-lake-700">${label}</label>
+            <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
             <input ${required} placeholder="${placeholder}" type="text" name="${label}" autocomplete="name" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
         `
     }else if (type === 'textarea'){
         new_div.innerHTML = `
-            <label for="${label}" class="block text-sm font-medium text-lake-700">${label}</label>
-            <textarea ${required}  name="${label}" rows="4" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm"></textarea>
+            <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
+            <textarea ${required} placeholder="${placeholder}"  name="${label}" rows="4" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm"></textarea>
         `
     }
 
@@ -138,7 +143,3 @@ function create_element(type, label, required, placeholder=''){
 function delete_element(label){
     document.getElementById(`${label}_input`).remove()
 }
-
-
-
-
