@@ -84,7 +84,7 @@ function create_field(){
             new_div.id = label
             new_div.innerHTML = `
                 <div class="py-2 flex-1 border border-lake-300 mt-3 px-2 truncate rounded-md flex gap-x-3">
-                    <div class="flex-1 hover:cursor-pointer gap-x-3 flex">
+                    <div onclick="selected_used_field('${label}')" class="flex-1 hover:cursor-pointer gap-x-3 flex">
                         <h1 class="font-roboto text-sm text-lake-700 flex-1 ">${label}</h1>
                     </div>
                 </div>
@@ -206,4 +206,9 @@ function reset(){
     selection_option.classList.add('hidden')
     placeholder_container.classList.remove('hidden')
     total_option = 0
+}
+
+
+function selected_used_field(id){
+    console.log(id)
 }
