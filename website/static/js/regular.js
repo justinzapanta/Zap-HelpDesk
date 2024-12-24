@@ -70,11 +70,13 @@ function create_field(){
 
     if (label !== ''){
         if (!(label in data)){
-            if (type == 'input' || type == 'input_number' || type == 'textarea'){
+            if (type !== 'select' ){
                 data[label] = {}
                 data[label]['type'] = type
                 data[label]['placeholder'] = placeholder
                 data[label]['required'] = required
+
+                console.log(data)
             }
 
 
@@ -83,7 +85,7 @@ function create_field(){
             new_div.classList.add('flex', 'h-fit')
             new_div.id = label
             new_div.innerHTML = `
-                <div class="py-2 flex-1 border border-lake-300 mt-3 px-2 truncate rounded-md flex gap-x-3">
+                <div id="used-field-${label}" class="used-fields py-2 flex-1 border border-lake-300 mt-3 px-2 truncate rounded-md flex gap-x-3">
                     <div onclick="selected_used_field('${label}')" class="flex-1 hover:cursor-pointer gap-x-3 flex">
                         <h1 class="font-roboto text-sm text-lake-700 flex-1 ">${label}</h1>
                     </div>
@@ -208,12 +210,27 @@ function reset(){
     total_option = 0
 }
 
-
+let update_button_container = document.getElementById('update_button_container')
+let create_button = document.getElementById('create_button')
 let temp_key
 function selected_used_field(id){
+    const used_fields = document.querySelectorAll('.used-fields')
+    const selected = document.getElementById(`used-field-${id}`)
+
+    selected.classList.replace('border-lake-300', 'border-lake-700')
+    used_fields.forEach(used_field => {
+        const filed = document.getElementById(used_field.id)
+
+        if (used_field.id !== `used-field-${id}`){
+            filed.classList.replace('border-lake-700', 'border-lake-300')
+        }
+    })
+
     temp_key = id
     
     label_input.value = id
     select_type.value = data[id]['type']
     placeholder_input.value = data[id]['placeholder']
+    update_button_container.classList.remove('hidden')
+    create_button.classList.add('hidden')
 }

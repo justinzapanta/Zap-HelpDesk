@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LakeNet Support Center</title>
+    <title>Support</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
@@ -196,7 +196,11 @@
                 </div>
 
                 <div class="w-full mt-4 flex justify-center">
-                    <button onclick="create_field()" class="px-10 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Create Field</button>
+                    <div id="update_button_container" class="flex gap-x-3 hidden">
+                        <button  class="px-10 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Cancel</button>
+                        <button  class="px-6 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Update Field</button>
+                    </div>
+                    <button id="create_button" onclick="create_field()" class="px-6 py-2  bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Create Field</button>
                 </div>
             </div>
         </div>
@@ -225,7 +229,7 @@
     </div>
     
     
-    <div class="hidden gap-x-1 mt-0.5 w-4 h-4">
+    <div class="hidden gap-x-2 mt-0.5 w-4 h-4">
 
     </div>
     <script src="{% static 'js/regular.js' %}"></script>
