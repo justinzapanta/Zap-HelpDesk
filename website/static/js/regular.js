@@ -209,6 +209,11 @@ function reset(){
 }
 
 
+let temp_key
 function selected_used_field(id){
-    console.log(id)
+    temp_key = id
+    
+    label_input.value = id
+    select_type.value = data[id]['type']
+    placeholder_input.value = data[id]['placeholder']
 }
