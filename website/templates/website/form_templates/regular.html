@@ -154,12 +154,11 @@
                 <div>
                     <label class="block text-sm font-medium text-lake-700">Type</label>
                     <select onchange="selected_type(this)" name="select_type" id="select_type" autocomplete="tel" class="mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 text-lake-700 sm:text-sm">
-                        <option value="input">Input</option>
+                        <option value="input">Input Text</option>
                         <option value="input_number">Input Number</option>
                         <option value="textarea">Textarea</option> 
                         <option value="select">Selection</option>
-                        <option value="image_upload">Image Upload</option>
-                        <option value="file_upload">File Upload</option>
+                        <option value="upload_image">Upload Image</option>
                         <option value="checkbox">Checkbox</option>
                         <option value="date">Date</option>
                     </select>           
@@ -173,7 +172,7 @@
 
                         <div id="option_container" class="gap-y-1 flex flex-col  max-h-64 overflow-y-auto">
                             <div id="option-1" class="flex">
-                                <input placeholder="option 1"  class=" options text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                                <input placeholder="option 1"  class="options text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
                                 <div class="my-auto ml-2">
                                     <i onclick="delete_option(this)" container_id="option-1" class="fas fa-trash z-40 mr-1 text-red-400 hover:text-red-500 ml-1 hover:cursor-pointer "></i>
                                 </div>
@@ -226,6 +225,10 @@
     </div>
     
     
+    <div class="hidden gap-x-1 mt-0.5 w-4 h-4">
+
+    </div>
     <script src="{% static 'js/regular.js' %}"></script>
+
 </body>
 </html>
