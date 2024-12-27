@@ -75,10 +75,9 @@ function create_field(){
                 data[label]['type'] = type
                 data[label]['placeholder'] = placeholder
                 data[label]['required'] = required
-
-                console.log(data)
             }
 
+            console.log(data)
 
             const used_fields_container = document.getElementById('used_fields_container')
             const new_div = document.createElement('div')
@@ -86,8 +85,8 @@ function create_field(){
             new_div.id = label
             new_div.innerHTML = `
                 <div id="used-field-${label}" class="used-fields py-2 flex-1 border border-lake-300 mt-3 px-2 truncate rounded-md flex gap-x-3">
-                    <div onclick="selected_used_field('${label}')" class="flex-1 hover:cursor-pointer gap-x-3 flex">
-                        <h1 class="font-roboto text-sm text-lake-700 flex-1 ">${label}</h1>
+                    <div id="selected_used-${label}" onclick="selected_used_field('${label}')" class="flex-1 hover:cursor-pointer gap-x-3 flex">
+                        <h1 id="used_field_label-${label}" class="font-roboto text-sm text-lake-700 flex-1 ">${label}</h1>
                     </div>
                 </div>
 
@@ -126,9 +125,10 @@ function delete_field(id){
 
 const form_field_container = document.getElementById('form_field_container')
 
-function create_element(type, label, required, placeholder=''){
+function create_element(type, label, required, placeholder='', update_tag=false){
     let new_div = document.createElement('div')
     new_div.id = `${label}_input`
+    let tag_and_label
 
     if (type === 'input' || type === 'input_number' || type === 'date'){
         if (type === 'input'){
@@ -140,47 +140,59 @@ function create_element(type, label, required, placeholder=''){
             placeholder_container.classList.add('hidden')
         }
 
-        new_div.innerHTML = `
-            <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
-            <input ${required} placeholder="${placeholder}" type="${type}" name="${label}" autocomplete="name" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+        tag_and_label = `
+            <label for="${label}" id="label-${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
+            <input ${required} placeholder="${placeholder}" id="input-${label}" type="${type}" name="${label}" autocomplete="name" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
         `
+
+        new_div.innerHTML = tag_and_label
     }else if (type === 'textarea'){
-        new_div.innerHTML = `
-            <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
-            <textarea ${required} placeholder="${placeholder}"  name="${label}" rows="4" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm"></textarea>
+        tag_and_label = `
+            <label for="${label}" id="label-${label}"  class="block text-sm break-words font-medium text-lake-700">${label}</label>
+            <textarea ${required} placeholder="${placeholder}" id="input-${label}"  name="${label}" rows="4" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm"></textarea>
         `
+
+        new_div.innerHTML = tag_and_label
     }else if (type === 'select'){
         const options_input = document.querySelectorAll('.options')
         let html_options = ''
 
-        console.log(options_input)
         options_input.forEach(option => {
             html_options += `<option value="${option.value}">${option.value}</option> \n`
         })
 
-
-        new_div.innerHTML = `
-            <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
-            <select ${required} name="${label}" autocomplete="tel" class="mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 text-lake-700 sm:text-sm">
+        tag_and_label = `
+            <label for="${label}" id="label-${label}"  class="block text-sm break-words font-medium text-lake-700">${label}</label>
+            <select ${required} name="${label}" id="input-${label}" autocomplete="tel" class="mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 text-lake-700 sm:text-sm">
                 ${html_options}
             </select>
         `
+
+        new_div.innerHTML = tag_and_label
     }else if(type === 'upload_image'){
-        new_div.innerHTML = `
-            <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
-            <input ${required} placeholder="${placeholder}" type="file" name="${label}" accept="image/*" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
-            `
+        tag_and_label = `
+        <label for="${label}" id="label-${label}"  class="block text-sm break-words font-medium text-lake-700">${label}</label>
+        <input ${required} placeholder="${placeholder}" id="input-${label}" type="file" name="${label}" accept="image/*" class="text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+        `
+
+        new_div.innerHTML = tag_and_label
     }else if(type === 'checkbox'){
-        new_div.innerHTML = `
+        tag_and_label = `
             <div class="flex gap-x-2">
-                <input ${required} placeholder="${placeholder}" type="checkbox" name="${label}" class="text-lake-700 block rounded-md shadow-sm w-4 h-4 py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
-                <label for="${label}" class="block text-sm break-words font-medium text-lake-700">${label}</label>
+                <input ${required} id="input-${label}" placeholder="${placeholder}" type="checkbox" name="${label}" class="text-lake-700 block rounded-md shadow-sm w-4 h-4 py-2 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                <label for="${label}" id="label-${label}"  class="block text-sm break-words font-medium text-lake-700">${label}</label>
             </div>
         `
+
+        new_div.innerHTML = tag_and_label
     }
 
-    form_field_container.appendChild(new_div)
-    reset()
+    if (!(update_tag)){
+        form_field_container.appendChild(new_div)
+        reset()
+    }else{
+        update_tag.innerHTML = tag_and_label
+    }
 }
 
 
@@ -213,16 +225,22 @@ function reset(){
 let update_button_container = document.getElementById('update_button_container')
 let create_button = document.getElementById('create_button')
 let temp_key
+let update = false
+
 function selected_used_field(id){
+    update = true
     const used_fields = document.querySelectorAll('.used-fields')
     const selected = document.getElementById(`used-field-${id}`)
+    global_id = id
 
     selected.classList.replace('border-lake-300', 'border-lake-700')
+    selected.classList.add('border-3')
     used_fields.forEach(used_field => {
         const filed = document.getElementById(used_field.id)
 
         if (used_field.id !== `used-field-${id}`){
             filed.classList.replace('border-lake-700', 'border-lake-300')
+            filed.classList.remove('border-2')
         }
     })
 
@@ -231,6 +249,86 @@ function selected_used_field(id){
     label_input.value = id
     select_type.value = data[id]['type']
     placeholder_input.value = data[id]['placeholder']
+    select_required.value = data[id]['required']
     update_button_container.classList.remove('hidden')
     create_button.classList.add('hidden')
+}
+
+
+function cancel_update(){
+    reset()
+    document.getElementById(`used-field-${temp_key}`).classList.replace('border-lake-700', 'border-lake-300')
+    temp_key = ''
+    update_button_container.classList.add('hidden')
+    create_button.classList.remove('hidden')
+    update = false
+}
+
+
+let selected_label
+function update_field(){
+    const label_id = `label-${temp_key}`
+    const input_id = `input-${temp_key}`
+    const used_field_text = `used_field_label-${temp_key}`
+
+    selected_label = label_id
+
+    if (temp_key != ''){
+        let type_not_change = true
+
+        if (data[temp_key]['type'] !== select_type.value){
+            type_not_change = false
+            const obj_key = label_input.value
+            const tag_container = document.getElementById(`${temp_key}_input`)
+            const field_input = document.getElementById(`input-${temp_key}`)
+            const input_label = document.getElementById(label_id)
+
+            input_label.remove()
+            field_input.remove()
+
+            create_element(type=select_type.value, label=label_input.value, 
+                required=select_required.value, placeholder=placeholder_input.value , update_tag=tag_container
+            )
+        }
+
+
+        if (temp_key == label_input.value){
+            //update
+            data[temp_key]['type'] = select_type.value
+            data[temp_key]['placeholder'] = placeholder_input.value
+            data[temp_key]['required'] = select_required.value
+            
+            
+        }else{
+            //createa and delete
+            delete data[temp_key]
+
+            data[label_input.value] = {}
+            data[label_input.value]['type'] = select_type.value
+            data[label_input.value]['placeholder'] = placeholder_input.value
+            data[label_input.value]['required'] = select_required.value 
+
+            console.log(data)
+        }
+
+
+        if (type_not_change){
+            console.log(label_id, label_input.value)
+
+            document.getElementById(label_id).textContent = label_input.value
+            document.getElementById(used_field_text).textContent = label_input.value
+            document.getElementById(input_id).placeholder = placeholder_input.value
+        }
+        
+        const used_field = document.getElementById(`used-field-${temp_key}`)
+        used_field.id =  `used-field-${label_input.value}`
+
+        const selected_used = document.getElementById(`selected_used-${temp_key}`)
+        selected_used.id = `selected_used-${label_input.value}` 
+        selected_used.setAttribute("onclick", `selected_used_field('${label_input.value}')`)
+
+        temp_key = label_input.value
+
+        cancel_update()
+    }
 }

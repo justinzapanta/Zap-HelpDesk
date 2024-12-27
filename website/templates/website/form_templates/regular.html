@@ -148,7 +148,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-lake-700">Label</label>
-                    <input  id="label" class=" text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
+                    <input id="label" class=" text-lake-700 mt-1 block w-full border border-lake-300 rounded-md shadow-sm py-1.5 px-3 focus:outline-none focus:ring-lake-500 focus:border-lake-500 sm:text-sm">
                 </div>
 
                 <div>
@@ -197,8 +197,8 @@
 
                 <div class="w-full mt-4 flex justify-center">
                     <div id="update_button_container" class="flex gap-x-3 hidden">
-                        <button  class="px-10 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Cancel</button>
-                        <button  class="px-6 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Update Field</button>
+                        <button onclick="cancel_update()" class="px-10 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Cancel</button>
+                        <button onclick="update_field()"  class="px-6 py-2 bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Update Field</button>
                     </div>
                     <button id="create_button" onclick="create_field()" class="px-6 py-2  bg-lake-600 hover:bg-lake-700 rounded-lg text-white font-semibold">Create Field</button>
                 </div>
@@ -214,7 +214,7 @@
             <div id="Full Name" class="flex h-fit">
                 <div class="py-2 flex-1 border border-lake-300 mt-3 px-2 truncate rounded-md flex gap-x-3">
                     <div onclick="selected_used_field('Full Name')" class="flex-1 hover:cursor-pointer gap-x-3 flex">
-                        <h1 class="font-roboto text-sm text-lake-700 flex-1 ">Full Name</h1>
+                        <h1 id="used_field_label-Full Name" class="font-roboto text-sm text-lake-700 flex-1 ">Full Name</h1>
                     </div>
                 </div>
                 <div class="my-auto h-full mx-2.5">
@@ -229,7 +229,7 @@
     </div>
     
     
-    <div class="hidden gap-x-2 mt-0.5 w-4 h-4">
+    <div class="hidden gap-x-2 mt-0.5 w-4 h-4 border-3">
 
     </div>
     <script src="{% static 'js/regular.js' %}"></script>
