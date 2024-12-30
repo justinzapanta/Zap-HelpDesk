@@ -1,10 +1,18 @@
 from django.urls import path
 from . import views
+from .API import auth
 
 
 urlpatterns = [
-    path('', views.dashboard, name='dashboard'),
+    path('', views.index, name="index"),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('dashboard/', views.dashboard, name='dashboard'),
     path('ticket-routing/', views.ticket_routing, name='ticket-routing'),
     path('ticket-form/', views.ticket_form, name='ticket-form'),
     path('template/', views.template, name='template'),
+
+    #Auth
+    path('api/send-mail', auth.send_email, name='send-mail'),
+    path('api/register', auth.register, name='api-register')
 ]

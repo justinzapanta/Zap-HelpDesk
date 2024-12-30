@@ -1,0 +1,45 @@
+{% extends 'website/base/index_base.html' %}
+{% load static %}
+
+{% block get_started %}
+{% endblock %}
+
+{% block content %}
+    <div class="h-screen w-full flex flex-col justify-center">
+        <div class="flex w-full justify-center font-roboto">
+            <div class="flex flex-col w-auto">
+                <div class="h-auto my-auto">
+                    <h1 class="text-4xl font-semibold text-center">Welcome To ZapDesk</h1>
+                </div>
+                <div class="mx-auto w-auto">
+                    <form onsubmit="submit_registration(this, event)" action="" method="POST" class="w-96 mt-7">
+                        {% csrf_token %}
+                        <h1 id="email-notif" class="text-red-500 hidden">The email address is already in use</h1>
+                        <div class="gap-y-3 flex flex-col">
+                            <div class="grid grid-cols-2 gap-x-2">
+                                <input id="fname" placeholder="First Name" required type="text" class="w-full border focus:border-sky-500 rounded-md">
+                                <input id="lname" placeholder="Last Name" required type="text" class="w-full border rounded-md">
+                            </div>
+                            <input id="company_name" placeholder="Company Name" required type="text" class="w-full border rounded-md">
+                            <input id="company_email" placeholder="Company Email" required type="text" class="w-full border rounded-md">
+                            <div class="flex gap-x-2">
+                                <div class="h-auto my-auto">
+                                    <input required type="checkbox" class="w-3.5 h-3.5 border rounded-sm">
+                                </div>
+                                <h1 class="font-roboto ">I agree all statements in terms of service</h1>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full flex justify-center mt-8">
+                            <button class="bg-sky-500 text-white font-roboto font-bold rounded-md hover:bg-sky-600 px-10 py-2">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block script %}
+        <script src="{% static 'js/register.js' %}"></script>
+    {% endblock %}
+{% endblock %}

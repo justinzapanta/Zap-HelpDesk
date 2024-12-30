@@ -1,0 +1,23 @@
+{% extends 'website/base/index_base.html' %}
+{% load static %}
+
+{% block content %}
+    <section class="bg-white dark:bg-gray-900 mt-28">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+            <h1 class="font-roboto text-4xl font-black  text-center ">A helpdesk with customizable ticket forms, API integration </h1>
+            <h1 class="font-roboto text-4xl font-black text-center mt-2">and the best system for your team and customers.</h1>
+            
+            <div class="flex w-full justify-center mt-8 gap-x-7">
+                <button class=" border py-3 px-8 rounded-xl text-lg font-bold font-roboto">Contact Us</button>
+                <button class="bg-blue-600 hover:bg-blue-700 py-3 px-8 rounded-xl text-white text-lg font-bold font-roboto">Get Started</button>
+            </div>
+
+            <video class="w-full rounded-2xl shadow-xl mt-10" controls>
+                <source src="{% static 'video/index.mp4' %}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+{% endblock %}
+      
+

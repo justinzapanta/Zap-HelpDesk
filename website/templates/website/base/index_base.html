@@ -1,0 +1,71 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-gray-200 dark:border-gray-600">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        
+            <div class="h-auto my-auto flex gap-x-3">
+                <img src="{% static 'img/desk_logo.png' %}" class="w-12 h-7" alt="">
+                <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap font-roboto dark:text-white">ZapDesk</span>
+                </a>
+            </div>
+
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-x-7">
+                <div class="h-auto flex flex-col justify-center">
+                    <a href="#" class="font-roboto font-bold">Login</a>
+                </div>
+
+                {% block get_started %}
+                <a href="{% url 'register' %}">
+                    <button type="button" class="text-white font-roboto font-bold bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button>
+                </a>
+                {% endblock %}
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <div id="verification_container" class="absolute top-0 left-0 h-screen w-full flex flex-col hidden  justify-center">
+        <div class="w-full flex justify-center">
+            <div class="w-96 py-4 pb-6 rounded-lg shadow-2xl border border-gray-300 bg-white">
+                <h1 class="text-center font-roboto font-semibold text-2xl">Verification Code</h1>
+                <div class="flex justify-center mt-6">
+                    <div>
+                        <h1 id="invalid-notif" class="font-roboto text-red-500 hidden">Invalid Code</h1>
+                        <input id="code_input" type="text" class="w-64 h-8 pl-1 rounded-md border">
+                    </div>
+                </div>
+
+                <div class="flex w-full justify-center mt-4 gap-x-3">
+                    <button onclick="close_verification()" class="px-8 rounded-lg hover:bg-gray-100 py-2.5 border font-bold font-roboto">Close</button>
+                    <button onclick="verify()" class="px-8 rounded-lg py-2.5 bg-sky-500 hover:bg-sky-600 text-white font-bold font-roboto">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
+    {% block script %}  
+    {% endblock %}
+</body>
+</html>
