@@ -2,12 +2,12 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from django.contrib.auth import login
 
 from ..models import UserInfo, Company, CompanyEmployee
 from .functions import generate_code
 import uuid
 import random
+
 
 @api_view(['POST'])
 def send_email(request):
@@ -31,7 +31,7 @@ def send_email(request):
             return Response({'result' : 'Invalid Email'})
     return Response({'result' : 'Error'})
 
-    
+
 @api_view(['POST'])
 def register(request):
     code = request.data['code']
@@ -46,7 +46,8 @@ def register(request):
             )
 
             owner_info = UserInfo(
-                user_other_info = new_owner
+                user_other_info = new_owner,
+                user_role = "owner"
             )
             owner_info.save()
 
@@ -55,9 +56,8 @@ def register(request):
                 company_owner = owner_info,
             )
             register_company.save()
-
-            login(request, new_owner)
-            request.session['code'] = ''
+            request.session['code'] = request.data['company_email']
+            print('success')
             return Response({'result' : 'success'})
         return Response({'result' : 'Invalid Code'})
     return Response({'result' : 'Invalid Code'})
@@ -68,8 +68,15 @@ def login(request):
     code = request.data['code']
     if code == request.session['code']:
         company_email = request.data['company_email']
+        request.session['code'] = company_email
     else:
         return Response({'result' : 'Invalid Code'})
 
-
-
+@api_view(['POST'])
+def verify_code(request):
+    print('running')
+    if request.data.get('code') == request.session.get('code'):
+        print(request.data['company_email'])
+        request.session['code'] = request.data['company_email']
+        return Response({'result' : 'success'})
+    return Response({'result' : 'Invalid Code'})

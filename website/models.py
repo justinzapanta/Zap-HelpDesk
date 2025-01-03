@@ -24,7 +24,9 @@ class CompanyEmployee(models.Model):
     employee_info = models.ForeignKey(UserInfo, on_delete=models.CASCADE, null=False)
     employee_company = models.ForeignKey(Company, on_delete=models.CASCADE, null=False)
     employee_department = models.CharField(max_length=100, null=False)
+    employee_role = models.CharField(max_length=50)
     employee_team = models.CharField(max_length=100, null=True)
+
 
 
 

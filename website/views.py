@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import login
 import requests
 
 
@@ -11,20 +12,35 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        pass
+        try:
+            if request.session.get('code'):
+                user = User.objects.get(username = request.session.get('code'))
+                if user:
+                    login(request, user)
+                    return redirect('dashboard')
+        except:
+            print('error')
     return render(request, 'website/views/register.html')
 
 
-def login(request):
+def sign_in(request):
+    try:
+        if request.method == 'POST':
+            if request.session.get('code'):
+                user = User.objects.get(username = request.session.get('code'))
+                if user:
+                    login(request, user)
+                    return redirect('dashboard')
+    except:
+        print('error')
     return render(request, 'website/views/login.html')
-
 
 
 def dashboard(request):
     if request.user.is_authenticated:
         return render(request, 'website/views/dashboard.html')
     else:
-        return redirect(login)
+        return redirect("sign-in")
 
 
 def ticket_routing(request):
